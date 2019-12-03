@@ -1,0 +1,189 @@
+
+
+
+
+
+<div class="card bg-dark text-white"> <!-- bg-dark text-white   -->
+ <div class="card-header"> {{ titulo }} </div>
+<div class="card-body">
+
+   
+
+
+<form (ngSubmit) = "create()" #clienteForm="ngForm">
+
+    <div class="form-group row">
+        <label for="nombre" class="col-form-label col-sm-2">Nombre</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="cliente.nombre" name="nombre" required minlength="4" maxlength="25" #nombre="ngModel">
+    <div class="alert alert-danger" *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)">
+        <div *ngIf="nombre.errors.required">
+            Digite Nombre es requerido
+        </div>
+        <div *ngIf="nombre.errors.minlength">
+                Nombre debe tener al menos 4 caracteres
+            </div>
+    </div>
+
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="apellidoPat" class="col-form-label col-sm-2">Primer Apellido</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="cliente.apellidoPat" name="apellidoPat" required maxlength="25" #apellidoPat="ngModel">
+    <div class="alert alert-danger" *ngIf="apellidoPat.invalid && (apellidoPat.dirty || apellidoPat.touched)">
+        <div *ngIf="apellidoPat.errors.required">
+                    Digite Apellido Paterno es requerido
+          </div>
+        
+            </div>
+        
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="apellidoMat" class="col-form-label col-sm-2">Segundo Apellido</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="cliente.apellidoMat" name="apellidoMat" required maxlength="25" #apellidoMat="ngModel">
+        <div class="alert alert-danger" *ngIf="apellidoMat.invalid && (apellidoMat.dirty || apellidoMat.touched)">
+                <div *ngIf="apellidoMat.errors.required">
+                            Digite Apellido Materno es requerido
+                  </div>
+                
+                    </div>
+        
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+        <label for="genero" class="col-form-label col-sm-2">Género</label>
+        <div class="col-sm-6">
+       <!-- <input type="text" class="form-control" [(ngModel)]="cliente.genero" name="genero" required maxlength="25" #genero="ngModel"> -->
+     
+       <select class="custom-select" id="inputGroupSelect01">
+        <option selected value="">--Seleccione Género--...</option>
+        <option value="1">Hombre</option>
+        <option value="2">Mujer</option>
+        <option value="3">Otro</option>
+      </select>
+      
+   <!--    <div class="alert alert-danger" *ngIf="genero.invalid && (genero.dirty || genero.touched)">
+                <div *ngIf="genero.errors.required">
+                            Digite Genero es requerido
+                  </div>
+                
+                    </div>  -->
+       </div>
+     </div>
+    
+
+    
+
+
+
+
+
+
+     <div class="form-group row">
+        <label for="domicilio" class="col-form-label col-sm-2">Domicilio</label>
+        <div class="col-sm-6">
+        <input type="text" class="form-control" [(ngModel)]="cliente.domicilio" name="domicilio" required maxlength="50" #domicilio="ngModel">
+     
+        <div class="alert alert-danger" *ngIf="domicilio.invalid && (domicilio.dirty || domicilio.touched)">
+                <div *ngIf="domicilio.errors.required">
+                            Digite Genero es requerido
+                  </div>
+                
+                    </div>
+    </div>
+    </div>
+
+
+    <div class="form-group row">
+            <label for="fono" class="col-form-label col-sm-2">Fono</label>
+            <div class="col-sm-6">
+            <input type="tel" class="form-control" [(ngModel)]="cliente.fono" name="fono" required maxlength="12" #fono="ngModel">
+            <div class="alert alert-danger" *ngIf="fono.invalid && (fono.dirty || fono.touched)">
+                    <div *ngIf="fono.errors.required">
+                                Digite Telefono es requerido
+                      </div>
+                    
+                        </div>
+            
+        </div>
+        </div>
+
+
+
+        <div class="form-group row">
+                <label for="createAt" class="col-form-label col-sm-2">Edad</label>
+                <div class="col-sm-2">
+             <!--   <input type="date" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" required>  -->
+          
+        
+                <input matInput [matDatepicker]="myDatepicker" class="form-control" [(ngModel)]="cliente.createAt" name="createAt" #createAt="ngModel" required style="display: inline; " >
+                <mat-datepicker-toggle matSuffix [for]="myDatepicker"></mat-datepicker-toggle>
+                <mat-datepicker touchUi #myDatepicker  [calendarHeaderComponent]="exampleHeader"></mat-datepicker>
+            
+                <div class="alert alert-danger" *ngIf="createAt.invalid && (createAt.dirty || createAt.touched)">
+                  <div *ngIf="createAt.errors.required">
+                              Digite fecha es requerido
+                    </div>
+                    <div *ngIf="createAt.errors.createAt">
+                      fecha debe tener un formato válido
+                </div>
+       </div>
+      
+
+              </div>
+            </div>
+
+
+
+         
+
+
+    <div class="form-group row">
+      <label for="email" class="col-form-label col-sm-2">Email</label>
+      <div class="col-sm-6">
+      <input type="email" class="form-control" [(ngModel)]="cliente.email" name="email" required email #email="ngModel" maxlength="50">
+      <div class="alert alert-danger" *ngIf="email.invalid && (email.dirty || email.touched)">
+            <div *ngIf="email.errors.required">
+                        Digite Correo Electronico es requerido
+              </div>
+              <div *ngIf="email.errors.email">
+                Correo Electronico debe tener un formato válido
+          </div>
+ </div>
+
+
+    </div>
+    </div>
+
+
+
+    <div class="form-group row">
+            <div class="col-sm-6">   
+        <button type="submit" class="btn btn-primary" role="button" (click)='create()' *ngIf="!cliente.id else elseBlock" [disabled]="!clienteForm.form.valid">Crear</button>
+    <ng-template #elseBlock>
+    <button type="submit" class="btn btn-success" role="button" (click)='update()' [disabled]="!clienteForm.form.valid">Actualizar</button>
+</ng-template>
+    </div>
+            <br>
+            <div class="col-sm-6">   
+                    <button type="reset" class="btn btn-warning" role="button">Limpiar</button>
+                        </div>
+        </div>
+
+
+
+  </form>
+
+
+
+</div>
+</div>
